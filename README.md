@@ -1,7 +1,8 @@
 # 1999API
 <img width="1620" height="921" alt="圖片1" src="https://github.com/user-attachments/assets/561d362c-21ba-425a-9c1f-41a65550dd42" />
 
-## 專案功能
+## 雲端連結
+https://drive.google.com/drive/folders/1sOypQ8iIz3V8hLHxpc83cykdc3toRKut?usp=drive_link
 
 - 提供 `/predict` API 進行單筆文本預測
 - 自動載入訓練完成的 PyTorch 模型 checkpoint
