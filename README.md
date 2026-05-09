@@ -85,7 +85,7 @@ curl -X POST "http://127.0.0.1:8000/predict" \
 ```python
 import requests
 
-url = "http://127.0.0.1:8000/predict"
+url = "http://127.0.0.1:8000/predict" # /predict ===> API of POST
 
 payload = {
     "Text": "輸入文章內容。",
