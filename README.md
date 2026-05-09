@@ -1,10 +1,5 @@
-<img width="1620" height="921" alt="圖片1" src="https://github.com/user-attachments/assets/561d362c-21ba-425a-9c1f-41a65550dd42" />
-
 # 1999API
-
-本專案是一個以 **FastAPI** 建立的多標籤文本分類推論 API，主要用於接收單筆文字資料，並透過已訓練好的模型進行標籤預測。
-
-專案核心程式集中於 `runs/` 目錄，包含 API 入口、模型載入、單筆推論流程，以及模型所需的資料處理與模型架構程式。
+<img width="1620" height="921" alt="圖片1" src="https://github.com/user-attachments/assets/561d362c-21ba-425a-9c1f-41a65550dd42" />
 
 ## 專案功能
 
