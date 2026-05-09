@@ -1,15 +1,8 @@
 # 1999API
 <img width="1620" height="921" alt="圖片1" src="https://github.com/user-attachments/assets/561d362c-21ba-425a-9c1f-41a65550dd42" />
 
-## 雲端連結
+## 模型連結
 https://drive.google.com/drive/folders/1sOypQ8iIz3V8hLHxpc83cykdc3toRKut?usp=drive_link
-
-- 提供 `/predict` API 進行單筆文本預測
-- 自動載入訓練完成的 PyTorch 模型 checkpoint
-- 使用 Transformer tokenizer 處理輸入文字
-- 載入標籤描述與標籤索引檔案
-- 結合 DGCN 與 label-specific representation 進行多標籤分類
-- 回傳 Top-K 預測標籤與對應機率分數
 
 ## 專案結構
 
@@ -28,10 +21,10 @@ https://drive.google.com/drive/folders/1sOypQ8iIz3V8hLHxpc83cykdc3toRKut?usp=dri
     │   ├── cache/
     │   │   └── ppmi_eta*.npy
     │   └── target/
-    │       └── best.pt
+    │       └── best.pt         # 需要至雲端連接下載對應.pt檔案並放於./runs/foxconn_file/target底下
     └── src/
-        ├── data.py             # Dataset、collate function、label description tokenize
-        ├── dgcn.py             # DGCN 模型模組
-        ├── label_graph.py      # PPMI label graph 計算與讀取
-        ├── model.py            # MLTCMedoidCLModel 模型架構
-        └── utils.py            # JSON 讀取、seed、device 等工具函式
+        ├── data.py             
+        ├── dgcn.py             
+        ├── label_graph.py      
+        ├── model.py            
+        └── utils.py            
