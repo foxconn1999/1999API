@@ -59,3 +59,14 @@ pip install fastapi uvicorn torch transformers numpy pandas pydantic
   "K": 5
 }
 ```
+
+## 輸出格式
+### Response Body
+
+```json
+{
+  "局處室名稱": 0.9123,
+  "局處室名稱": 0.8431,
+  "局處室名稱": 0.7325
+}
+```
