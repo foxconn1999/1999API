@@ -49,3 +49,13 @@ https://drive.google.com/drive/folders/1sOypQ8iIz3V8hLHxpc83cykdc3toRKut?usp=dri
 ```bash
 pip install fastapi uvicorn torch transformers numpy pandas pydantic
 ```
+
+## 輸入格式
+### Request Body
+
+```json
+{
+  "Text": "請輸入要進行分類預測的文章內容",
+  "K": 5
+}
+```
