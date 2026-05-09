@@ -70,3 +70,30 @@ pip install fastapi uvicorn torch transformers numpy pandas pydantic
   "局處室名稱": 0.7325
 }
 ```
+
+## 呼叫範例
+### 使用 cURL 呼叫
+
+```bash
+curl -X POST "http://127.0.0.1:8000/predict" \
+     -H "Content-Type: application/json" \
+     -d "{\"Text\": \"民眾反映道路旁路燈故障，夜間照明不足，影響行人與車輛通行安全，請相關單位協助處理。\", \"K\": 5}"
+```
+
+### 使用 Python 呼叫
+
+```python
+import requests
+
+url = "http://127.0.0.1:8000/predict"
+
+payload = {
+    "Text": "民眾反映道路旁路燈故障，夜間照明不足，影響行人與車輛通行安全，請相關單位協助處理。",
+    "K": 5
+}
+
+response = requests.post(url, json=payload)
+
+print(response.status_code)
+print(response.json())
+```
