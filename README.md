@@ -18,7 +18,7 @@ https://drive.google.com/drive/folders/1sOypQ8iIz3V8hLHxpc83cykdc3toRKut?usp=dri
     ├── predict_one.py          # 單筆文字推論流程
     ├── foxconn_file/           # 模型與推論所需資料
     │   ├── label_to_index.json
-    │   ├── label_desc_cache_*.json
+    │   ├── label_desc_cache_*.json # *代表資料集名稱，例: label_desc_cache_(法人化)流行音樂中心.json
     │   ├── cache/
     │   │   └── ppmi_eta*.npy
     │   └── target/
