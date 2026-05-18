@@ -2,7 +2,7 @@
 <img width="1620" height="921" alt="圖片1" src="https://github.com/user-attachments/assets/561d362c-21ba-425a-9c1f-41a65550dd42" />
 
 ## 模型連結
-https://drive.google.com/drive/folders/1sOypQ8iIz3V8hLHxpc83cykdc3toRKut?usp=drive_link
+https://drive.google.com/drive/folders/19gKEkjPk_Qs6PlPWC5VakY6P9VAw_5Qu?usp=drive_link
 
 ## 專案結構
 ---
