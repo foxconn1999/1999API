@@ -1,42 +1,36 @@
+import os
+
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
-from runs.model import Request_Content
+from runs.model import Request_Content, Model_Manager
 from runs.load_model import load_model_and_assets
 from runs.predict_one import predict_one_text
 from runs.config import *
+from runs.src.utils import get_device, get_tokenizer
 
-model = None
-tokenizer = None
-label_inputs = None
-index_to_label = None
-args = None
-device = None
+# global parameter
+device = get_device()
+tokenizer = get_tokenizer(MODEL_NAME)
+
+# init the model_manager
+model_manager = Model_Manager(device=device, tokenizer=tokenizer)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global model, tokenizer, label_inputs, index_to_label, args, device
+    global tokenizer, device, model_manager
 
-    model, tokenizer, label_inputs, index_to_label, args, device = load_model_and_assets(
-        ckpt_path=CKPT_PTAH,
-        data_path=DATA_ROOT,
-    )
-
+    model_manager.load(route=DATA_ROOT)
     yield
-    del model
-    del tokenizer
-    del label_inputs
-    del index_to_label
-    del args
-    del device
+    model_manager.clear()
 
-app = FastAPI(lifespan=lifespan)
 
-@app.post("/predict")
-def predict_one(content: Request_Content):
-    # get the predict of model
-    print(MAX_LENGTH)
-    result = predict_one_text(
+def inference(route: str, content: Request_Content):
+    global model_manager
+
+    model, label_inputs, index_to_label, args = model_manager.load(route=route)
+
+    return predict_one_text(
         text=content.Text,
         model=model,
         tokenizer=tokenizer,
@@ -48,5 +42,50 @@ def predict_one(content: Request_Content):
         top_k=content.K,
     )
 
-    result_of_normalization = {item[0]: round(item[1], 4) for item in result}
-    return result_of_normalization
+app = FastAPI(lifespan=lifespan)
+
+@app.post("/predict")
+def predict_one(content: Request_Content):
+    # return value
+    output = {}
+
+    """
+    level1
+    """
+    level1_result = inference(route=DATA_ROOT, content=content)
+    output["level1"] = {item[0]: round(item[1], 4) for item in level1_result}
+
+    """
+    level2
+    """
+    level2_result = {}
+
+    for agenda, _ in output["level1"].items():
+        if os.path.exists(f"./runs/level2/{agenda}"):
+            agenda_result = inference(route=f"./runs/level2/{agenda}", content=content)
+            level2_result[agenda] = {item[0]: round(item[1], 4) for item in agenda_result}
+        else:
+            level2_result[agenda] = "None"
+
+    output["level2"] = level2_result
+
+    """
+    level3
+    """
+    level3_result = {}
+
+    for agenda in output["level2"].keys():
+        if output["level2"][agenda] != "None":
+            level3_result[agenda] = {}
+            for task, _ in output["level2"][agenda].items():
+                if os.path.exists(f"./runs/level3/{agenda}/{task}"):
+                    task_result = inference(route=f"./runs/level3/{agenda}/{task}", content=content)
+                    level3_result[agenda][task] = {item[0]: round(item[1], 4) for item in task_result}
+                else:
+                    level3_result[agenda][task] = "None"
+        else:
+            level3_result[agenda] = "None"
+
+    output["level3"] = level3_result
+
+    return output

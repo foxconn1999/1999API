@@ -1,6 +1,6 @@
 DATASET = "foxconn_with_area"
-CKPT_PTAH = "./runs/foxconn_file/target/best.pt"
-DATA_ROOT = "./runs/foxconn_file"
+DATA_ROOT = "./runs/level1"
+MODEL_NAME = "bert-base-chinese"
 
 # parameter for model
 MAX_LENGTH=512

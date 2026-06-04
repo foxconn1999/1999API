@@ -17,9 +17,9 @@ def build_index_to_label(label_to_index, num_labels):
 def load_model_and_assets(
     ckpt_path,
     data_path="./runs/foxconn_file",
-    device=None
+    device=None,
+    tokenizer=None
 ):
-    device = torch.device(device if device else ("cuda" if torch.cuda.is_available() else "cpu"))
     ckpt = torch.load(ckpt_path, map_location=device)
     args = ckpt["args"]
 
@@ -30,16 +30,13 @@ def load_model_and_assets(
     eta = args["eta"]
     label_desc_max_length = args["label_desc_max_length"]
 
-    num_labels = 163
-
     label_to_index_path = os.path.join(data_path, "label_to_index.json")
     label_desc_path = os.path.join(data_path, f"label_desc_cache_{dataset}.json")
 
     label_to_index = read_json(label_to_index_path)
+    num_labels = len(label_to_index)
     index_to_label = build_index_to_label(label_to_index, num_labels)
     label_desc = read_json(label_desc_path)
-
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     label_inputs = build_label_description_inputs(
         tokenizer=tokenizer,
@@ -62,4 +59,4 @@ def load_model_and_assets(
     model.load_state_dict(ckpt["model"])
     model.eval()
 
-    return model, tokenizer, label_inputs, index_to_label, args, device
+    return model, label_inputs, index_to_label, args
