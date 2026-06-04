@@ -1,9 +1,6 @@
 # 1999API
 <img width="1620" height="921" alt="圖片1" src="https://github.com/user-attachments/assets/561d362c-21ba-425a-9c1f-41a65550dd42" />
 
-## 模型連結
-https://drive.google.com/drive/folders/19gKEkjPk_Qs6PlPWC5VakY6P9VAw_5Qu?usp=drive_link
-
 ## 專案結構
 ---
 
@@ -11,18 +8,14 @@ https://drive.google.com/drive/folders/19gKEkjPk_Qs6PlPWC5VakY6P9VAw_5Qu?usp=dri
 1999API/
 ├── README.md
 └── runs/
-    ├── main.py                 # FastAPI 入口，建立 /predict API
-    ├── config.py               # 設定模型路徑、資料路徑與推論參數
-    ├── model.py                # API request body 格式定義
-    ├── load_model.py           # 載入模型、tokenizer、label 資源
-    ├── predict_one.py          # 單筆文字推論流程
-    ├── foxconn_file/           # 模型與推論所需資料
-    │   ├── label_to_index.json
-    │   ├── label_desc_cache_*.json # *代表資料集名稱，例: label_desc_cache_(法人化)流行音樂中心.json
-    │   ├── cache/
-    │   │   └── ppmi_eta*.npy
-    │   └── target/
-    │       └── best.pt         # 需要至雲端連接下載對應.pt檔案並放於./runs/foxconn_file/target底下
+    ├── main.py                     # FastAPI 入口，建立 /predict API
+    ├── config.py                   # 設定模型路徑、資料路徑與推論參數
+    ├── model.py                    # API request body 與 model_manager cache定義
+    ├── load_model.py               # 載入模型、tokenizer、label 資源
+    ├── predict_one.py              # 單筆文字推論流程
+    ├── level1/                     # 第一階層(局處室分類) 標籤敘述&模型目錄
+    ├── level2/                     # 第二階層(主項分類) 標籤敘述&模型目錄
+    ├── level3/                     # 第三階層(子項分類) 標籤敘述&模型目錄, 附註: level1~3資料夾需到雲端下載
     └── src/
         ├── data.py             
         ├── dgcn.py             
@@ -65,9 +58,43 @@ pip install fastapi uvicorn torch transformers numpy pandas pydantic
 
 ```json
 {
-  "局處室名稱": 0.9123,
-  "局處室名稱": 0.8431,
-  "局處室名稱": 0.7325
+    "level1":
+    {
+        局處室1: 信心分數,
+        局處室2: 信心分數,
+    },
+    "level2":
+    {
+        局處室1:
+        {
+            主項1: 信心分數,
+            主項2: 信心分數
+        },
+        局處室2:
+        {
+            ...
+        }
+    },
+    "level3":
+    {
+        局處室1:
+        {
+            主項1:
+            {
+                子項1: 信心分數
+                子項2: 信心分數
+            },
+            主項2:
+            {
+                子項1: 信心分數
+                子項2: 信心分數
+            }
+        },
+        局處室2:
+        {
+            ...
+        }
+    }
 }
 ```
 
