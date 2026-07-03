@@ -55,33 +55,45 @@ pip install fastapi uvicorn torch transformers numpy pandas pydantic
 }
 ```
 ```json
+/particular_predict
+{
+  "Text": "請輸入要進行分類預測的文章內容",
+  "K": 5
+  "Category": "查詢類別"
+}
 ```
 
 ## 輸出格式
 ### Response Body
 
 ```json
+/predict
 {
+    "agenda":
+    {
+        "局處室1": 0.9866,
+        "局處室2": 0.5489,
+    }
     "level1":
     {
-        "局處室1": 0.9665,
-        "局處室2": 0.0016,
+        "類別1": 0.9665,
+        "類別2": 0.0016,
     },
     "level2":
     {
-        "局處室1":
+        "類別1":
         {
             "主項1": 0.8567,
             "主項2": 0.5645
         },
-        "局處室2":
+        "類別2":
         {
             ...
         }
     },
     "level3":
     {
-        "局處室1":
+        "類別1":
         {
             "主項1":
             {
@@ -94,9 +106,39 @@ pip install fastapi uvicorn torch transformers numpy pandas pydantic
                 "子項2": 0.0012
             }
         },
-        "局處室2":
+        "類別2":
         {
             ...
+        }
+    }
+}
+```
+```json
+/particular_predict
+{
+    "level1": "輸入類別名稱",
+    "level2":
+    {
+        "輸入類別名稱":
+        {
+            "主項1": 0.8567,
+            "主項2": 0.5645
+        }
+    },
+    "level3":
+    {
+        "輸入類別名稱":
+        {
+            "主項1":
+            {
+                "子項1": 0.9618
+                "子項2": 0.1234
+            },
+            "主項2":
+            {
+                "子項1": 0.1248
+                "子項2": 0.0012
+            }
         }
     }
 }
