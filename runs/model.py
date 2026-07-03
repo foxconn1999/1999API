@@ -5,6 +5,9 @@ class Request_Content(BaseModel):
     Text: str
     K: int
 
+class Request_Content_Partiuclar(Request_Content):
+    Category: str
+
 class Model_Manager():
     def __init__(self, tokenizer, device):
         self.cache = {}
@@ -24,4 +27,3 @@ class Model_Manager():
     
     def clear(self):
         self.cache.clear()
-        

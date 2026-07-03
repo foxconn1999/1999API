@@ -1,8 +1,6 @@
 import torch
 import os
 
-from transformers import AutoTokenizer
-
 from runs.src.data import build_label_description_inputs
 from runs.src.label_graph import maybe_load_ppmi
 from runs.src.model import MLTCMedoidCLModel

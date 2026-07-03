@@ -1,5 +1,6 @@
 DATASET = "foxconn_with_area"
-DATA_ROOT = "./runs/level1"
+LEVEL1_ROOT = "./runs/level1"
+AGENDA_ROOT = "./runs/Agenda"
 MODEL_NAME = "bert-base-chinese"
 
 # parameter for model
