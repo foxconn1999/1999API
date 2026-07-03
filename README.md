@@ -48,6 +48,7 @@ pip install fastapi uvicorn torch transformers numpy pandas pydantic
 ### Request Body
 
 ```json
+/predict
 {
   "Text": "請輸入要進行分類預測的文章內容",
   "K": 5
