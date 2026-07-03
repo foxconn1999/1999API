@@ -8,14 +8,15 @@
 1999API/
 ├── README.md
 └── runs/
-    ├── main.py                     # FastAPI 入口，建立 /predict API
+    ├── main.py                     # FastAPI 入口，建立 /predict, /particular_predict API
     ├── config.py                   # 設定模型路徑、資料路徑與推論參數
     ├── model.py                    # API request body 與 model_manager cache定義
     ├── load_model.py               # 載入模型、tokenizer、label 資源
     ├── predict_one.py              # 單筆文字推論流程
-    ├── level1/                     # 第一階層(局處室分類) 標籤敘述&模型目錄
+    ├── Agenda                      # 局處室分類 標籤敘述&模型目錄
+    ├── level1/                     # 第一階層(類別分類) 標籤敘述&模型目錄
     ├── level2/                     # 第二階層(主項分類) 標籤敘述&模型目錄
-    ├── level3/                     # 第三階層(子項分類) 標籤敘述&模型目錄, 附註: level1~3資料夾需到雲端下載
+    ├── level3/                     # 第三階層(子項分類) 標籤敘述&模型目錄, 附註: Agenda, level1~3資料夾需到雲端下載
     └── src/
         ├── data.py             
         ├── dgcn.py             
