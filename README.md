@@ -54,6 +54,8 @@ pip install fastapi uvicorn torch transformers numpy pandas pydantic
   "K": 5
 }
 ```
+```json
+```
 
 ## 輸出格式
 ### Response Body
