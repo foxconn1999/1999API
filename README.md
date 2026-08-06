@@ -2,7 +2,6 @@
 <img width="1620" height="921" alt="圖片1" src="https://github.com/user-attachments/assets/561d362c-21ba-425a-9c1f-41a65550dd42" />
 
 ## 專案結構
----
 
 ```bash
 1999API/
@@ -26,13 +25,10 @@
 ```
 
 ## 雲端模型連結
----
 ```text
 https://drive.google.com/drive/u/0/folders/19gKEkjPk_Qs6PlPWC5VakY6P9VAw_5Qu
 ```
----
 
----
 
 ## 環境需求
 - Python 3.8+
@@ -44,7 +40,6 @@ https://drive.google.com/drive/u/0/folders/19gKEkjPk_Qs6PlPWC5VakY6P9VAw_5Qu
 - Pandas
 - Pydantic
 
----
 
 ## 安裝套件
 ```bash
