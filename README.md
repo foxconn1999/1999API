@@ -25,6 +25,13 @@
         └── utils.py
 ```
 
+## 雲端模型連結
+---
+```text
+https://drive.google.com/drive/u/0/folders/19gKEkjPk_Qs6PlPWC5VakY6P9VAw_5Qu
+```
+---
+
 ---
 
 ## 環境需求
